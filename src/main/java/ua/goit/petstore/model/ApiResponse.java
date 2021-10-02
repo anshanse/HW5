@@ -11,7 +11,7 @@ public class ApiResponse {
     private int code;
 
     @SerializedName("type")
-    private String tupe;
+    private String type;
 
     @SerializedName("message")
     private String message;

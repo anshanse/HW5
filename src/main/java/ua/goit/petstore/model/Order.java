@@ -1,10 +1,18 @@
 package ua.goit.petstore.model;
 
 import com.google.gson.annotations.SerializedName;
+import lombok.Builder;
 import lombok.Data;
 
+import java.io.Serial;
+
+@Builder
 @Data
-public class Order {
+public class Order implements BaseEntity<Long>{
+
+    @Serial
+    private static final long serialVersionUID = 6327904689556787198L;
+
     @SerializedName("id")
     private long id;
 
