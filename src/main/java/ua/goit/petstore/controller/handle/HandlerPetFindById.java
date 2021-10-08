@@ -1,10 +1,8 @@
 package ua.goit.petstore.controller.handle;
 
-import ua.goit.petstore.service.PetService;
+import ua.goit.petstore.model.Pet;
 
 public class HandlerPetFindById extends PetShopHandler{
-
-    private PetService service = new PetService();
 
     public HandlerPetFindById(PetShopHandler handler) {
         super(handler);
@@ -12,7 +10,9 @@ public class HandlerPetFindById extends PetShopHandler{
 
     @Override
     protected void apply() {
-        //...
+        message.sendMessage("Input Pet ID");
+        Pet entity = petService.findById(Long.valueOf(readData.readConsole()));
+        message.operationEntityMgs("find", Pet.class, entity);
     }
 
     @Override

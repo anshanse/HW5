@@ -13,6 +13,9 @@ public class HandlerExit extends PetShopHandler{
         if (!"Upper".equals(consoleLevel)) {
             consoleLevel = "Upper";
         }
+        else {
+            isExit = true;
+        }
     }
 
     @Override

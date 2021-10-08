@@ -12,4 +12,16 @@ public class StoreService extends BaseService<Order, Long> {
     public Map<String, Integer> getByStatus (){
         return repository.getOrdersByStatus();
     }
+    //
+    public Order save (Order order){
+        return repository.create(order);
+    }
+
+    public Order delete(Long id){
+        return repository.deleteById(id);
+    }
+
+    public Order findById (Long id) {
+        return repository.getOne(id);
+    }
 }

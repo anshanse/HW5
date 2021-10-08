@@ -1,5 +1,7 @@
 package ua.goit.petstore.controller.handle;
 
+import java.util.Map;
+
 public class HandlerStorePetsByStatus extends PetShopHandler{
 
     public HandlerStorePetsByStatus(PetShopHandler handler) {
@@ -8,11 +10,12 @@ public class HandlerStorePetsByStatus extends PetShopHandler{
 
     @Override
     protected void apply() {
-
+        Map<String, Integer> responseByStatus = storeService.getByStatus();
+        responseByStatus.forEach((k, v) -> System.out.println(k + " : " + v));
     }
 
     @Override
     protected boolean isApplicable(String inputNumber) {
-        return ("7".equals(inputNumber) || consoleLevel.equals("Pets"));
+        return ("1".equals(inputNumber) && consoleLevel.equals("Store"));
     }
 }

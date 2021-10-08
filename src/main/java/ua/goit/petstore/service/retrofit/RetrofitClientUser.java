@@ -26,4 +26,17 @@ public interface RetrofitClientUser {
     @GET("user/logout")
     Call<ApiResponse> logout();
 
+    //
+    @GET("user/{entityId}")
+    Call<User> getById(@Path("entityId") Long id);
+
+    @POST("user")
+    Call<ApiResponse> createEntity(@Body User body);
+
+    @PUT("user/{userName}")
+    Call<User> updateEntity(@Path("userName") String userName,@Body User body);
+
+    @DELETE("user/{entityId}")
+    Call<ApiResponse> deleteById(@Path("entityId") Long id);
+
 }

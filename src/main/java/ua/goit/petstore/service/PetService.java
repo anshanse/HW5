@@ -11,16 +11,31 @@ public class PetService extends BaseService<Pet,Long>{
 
     private final PetRepository repository = new PetRepository(Pet.class);
 
-    private ApiResponse uploadImg(Long id, MultipartBody.Part body){
-        return repository.uploadImg(id, body);
+    public ApiResponse uploadImg(Long id, MultipartBody.Part metadata, MultipartBody.Part body){
+        return repository.uploadImg(id, metadata, body);
     }
 
-    private ApiResponse updateFieldsByPetId (Long id, String name, String status){
+    public ApiResponse updateFieldsByPetId (Long id, String name, String status){
         return repository.updateFieldsByPetId(id, name, status);
     }
 
-    private List<Pet> findByStatus(String status){
+    public List<Pet> findByStatus(String status){
         return repository.findByStatus(status);
     }
 
+    public Pet save (Pet pet){
+        return repository.save(pet);
+    }
+
+    public Pet update (Pet pet){
+        return repository.save(pet);
+    }
+
+    public Pet delete(Long id){
+        return repository.deleteById(id);
+    }
+
+    public Pet findById (Long id){
+        return repository.getOne(id);
+    }
 }

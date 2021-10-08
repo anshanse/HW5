@@ -21,4 +21,13 @@ public class ReadData {
         }
         return inputData;
     }
+
+    public String readStatus(){
+        String inputData = "";
+        while (!validator.validateStatus(inputData)) {
+            //message.promptFormattingInput();
+            inputData = readConsole();
+        }
+        return inputData;
+    }
 }

@@ -3,13 +3,8 @@ package ua.goit.petstore.service.retrofit;
 import okhttp3.MultipartBody;
 import retrofit2.Call;
 import retrofit2.http.*;
-import ua.goit.petstore.model.ApiResponse;
-import ua.goit.petstore.model.Order;
-import ua.goit.petstore.model.Pet;
-import ua.goit.petstore.model.User;
-
+import ua.goit.petstore.model.*;
 import java.util.List;
-import java.util.Map;
 
 public interface RetrofitClientPet extends RetrofitClient{
 
@@ -23,6 +18,19 @@ public interface RetrofitClientPet extends RetrofitClient{
 
     @Multipart
     @POST("pet/{id}/uploadImage")
-    Call<ApiResponse> uploadImg(@Path("id") Long id, @Part MultipartBody.Part filePart);
+    Call<ApiResponse> uploadImg(@Path("id") Long id, @Part MultipartBody.Part metadata,  @Part MultipartBody.Part filePart);
+
+    //
+    @GET("pet/{entityId}")
+    Call<Pet> getById(@Path("entityId") Long id);
+
+    @POST("pet")
+    Call<Pet> createEntity(@Body Pet body);
+
+    @PUT("pet")
+    Call<Pet> updateEntity(@Body Pet body);
+
+    @DELETE("pet/{entityId}")
+    Call<ApiResponse> deleteById(@Path("entityId") Long id);
 
 }

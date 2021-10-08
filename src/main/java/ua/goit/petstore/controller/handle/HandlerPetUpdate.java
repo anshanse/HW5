@@ -1,10 +1,8 @@
 package ua.goit.petstore.controller.handle;
 
-import ua.goit.petstore.service.PetService;
+import ua.goit.petstore.model.Pet;
 
 public class HandlerPetUpdate extends PetShopHandler{
-
-    private PetService service = new PetService();
 
     public HandlerPetUpdate(PetShopHandler handler) {
         super(handler);
@@ -12,7 +10,9 @@ public class HandlerPetUpdate extends PetShopHandler{
 
     @Override
     protected void apply() {
-        //...
+        Pet entity = petService.create(Pet.class);
+        Pet savedEntity =petService.save(entity);
+        message.operationEntityMgs("updated", Pet.class, savedEntity);
     }
 
     @Override

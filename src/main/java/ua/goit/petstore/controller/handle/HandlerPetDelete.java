@@ -1,10 +1,8 @@
 package ua.goit.petstore.controller.handle;
 
-import ua.goit.petstore.service.PetService;
+import ua.goit.petstore.model.Pet;
 
 public class HandlerPetDelete extends PetShopHandler{
-
-    private PetService service = new PetService();
 
     public HandlerPetDelete(PetShopHandler handler) {
         super(handler);
@@ -12,7 +10,9 @@ public class HandlerPetDelete extends PetShopHandler{
 
     @Override
     protected void apply() {
-        //...
+        message.sendMessage("Input pet ID: ");
+        Pet entity = petService.delete(Long.valueOf(readData.readConsole()));
+        message.operationEntityMgs("deleted", Pet.class, entity);
     }
 
     @Override

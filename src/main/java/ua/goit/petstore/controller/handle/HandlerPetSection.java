@@ -8,11 +8,11 @@ public class HandlerPetSection extends PetShopHandler{
 
     @Override
     protected void apply() {
-        consoleLevel = "Pet";
+        consoleLevel = "Pets";
     }
 
     @Override
     protected boolean isApplicable(String inputNumber) {
-        return ("1".equals(inputNumber) && "Upper".equals(consoleLevel));
+        return ("2".equals(inputNumber) && "Upper".equals(consoleLevel));
     }
 }

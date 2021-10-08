@@ -1,8 +1,9 @@
 package ua.goit.petstore.repository;
 
 import lombok.SneakyThrows;
+import retrofit2.converter.gson.GsonConverterFactory;
+import ua.goit.petstore.config.PropertiesLoader;
 import ua.goit.petstore.model.BaseEntity;
-import ua.goit.petstore.service.retrofit.RFClient;
 import ua.goit.petstore.service.retrofit.RetrofitClient;
 import ua.goit.petstore.service.retrofit.RetrofitConfig;
 import java.util.*;
@@ -11,42 +12,32 @@ public class BaseRepositoryImpl<T extends BaseEntity<ID>, ID> implements BaseRep
 
     private final RetrofitClient connection;
     private final Class<T> modelClass;
+    private static final String BASE_URL = PropertiesLoader.getProperty("api.url");
 
     @SneakyThrows
     public BaseRepositoryImpl(Class<T> modelClass) {
-        this.connection = RFClient.getClient();
+        this.connection = RetrofitConfig.createClient(BASE_URL, GsonConverterFactory.create(), RetrofitClient.class);
         this.modelClass = modelClass;
     }
 
-    @SneakyThrows
     @Override
-    public Optional<T> findById(ID id) {
-        return Optional.of((T)RetrofitConfig.execute(connection.getById(modelClass.getName(), (Long) id)));
+    public T save(T t) {
+        return null;
+    }
+
+    @Override
+    public T deleteById(ID id) {
+        return null;
     }
 
     @Override
     public T getOne(ID id) {
-        return findById(id).orElseThrow(()-> new RuntimeException("Entity with id " + id + " not found"));
+        return null;
     }
 
-    @SneakyThrows
     @Override
-    public T deleteById(ID id) {
-        T deletingEntity = getOne(id);
-        RetrofitConfig.execute(connection.deleteById(modelClass.getName(), (Long) id));
-        return deletingEntity;
-    }
-
-
-    @SneakyThrows
-    @Override
-    public T save(T t) {
-        if (t.getId() == null || !findById(t.getId()).isPresent()) {
-            return ((T) RetrofitConfig.execute(connection.createEntity(modelClass.getName(), t)));
-        }
-        else {
-            return ((T) RetrofitConfig.execute(connection.updateEntity(modelClass.getName(), t)));
-        }
+    public Optional<T> findById(ID id) {
+        return Optional.empty();
     }
 
 }

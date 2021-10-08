@@ -13,6 +13,6 @@ public class HandlerStoreSection extends PetShopHandler{
 
     @Override
     protected boolean isApplicable(String inputNumber) {
-        return ("2".equals(inputNumber) && "Upper".equals(consoleLevel));
+        return ("1".equals(inputNumber) && "Upper".equals(consoleLevel));
     }
 }

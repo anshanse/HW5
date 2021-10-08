@@ -2,13 +2,17 @@ package ua.goit.petstore.model;
 
 
 import com.google.gson.annotations.SerializedName;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serial;
 
 @Data
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class User implements BaseEntity<Long>{
 
     @Serial
@@ -36,6 +40,6 @@ public class User implements BaseEntity<Long>{
     private String phone;
 
     @SerializedName("userStatus")
-    private Integer status;
+    private Integer userStatus;
 
 }

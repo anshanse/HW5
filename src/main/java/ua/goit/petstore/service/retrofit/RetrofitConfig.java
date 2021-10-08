@@ -7,7 +7,6 @@ import retrofit2.Call;
 import retrofit2.Converter.Factory;
 import retrofit2.Response;
 import retrofit2.Retrofit;
-import java.io.IOException;
 
 public class RetrofitConfig {
     public static  <T> T createClient(String apiUrl, Factory factory, Class<T> clientClass) {
@@ -22,15 +21,9 @@ public class RetrofitConfig {
     @SneakyThrows
     public static <T> T execute(Call<T> call){
         Response<T> response = call.execute();
-        if (response.isSuccessful()) {
-            //System.out.println(call.request().url());
-            return response.body();
-        }
-        else {
+        if (!response.isSuccessful()) {
             String errorMessage = "HTTP error code: " + response.code() + " -> " + response.errorBody().string();
-            //System.out.println(errorMessage);
-            System.out.println(call.request().url());
-            throw new RuntimeException(errorMessage);
         }
+        return response.body();
     }
 }
