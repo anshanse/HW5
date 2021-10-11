@@ -42,8 +42,8 @@ public class UserService extends BaseService<User, Long>{
     }
 
 
-    public User delete(Long id){
-        return repository.deleteById(id);
+    public User delete(String userName){
+        return repository.deleteById(userName);
     }
 
     public List<User> readUsersToList(){

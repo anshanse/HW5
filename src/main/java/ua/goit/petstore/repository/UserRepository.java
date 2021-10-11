@@ -58,9 +58,9 @@ public class UserRepository extends BaseRepositoryImpl{
     }
 
     @SneakyThrows
-    public User deleteById(Long id) {
-        User deletingEntity = getOne(id);
-        RetrofitConfig.execute(connection.deleteById(id));
+    public User deleteById(String userName) {
+        User deletingEntity = getByName(userName);
+        RetrofitConfig.execute(connection.deleteByName(userName));
         return deletingEntity;
     }
 

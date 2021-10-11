@@ -11,9 +11,9 @@ public class HandlerUserDelete extends PetShopHandler{
 
     @Override
     protected void apply() {
-        message.sendMessage("Input order ID:");
-        Long id = Long.valueOf(readData.readConsole());
-        User entity = userService.delete(id);
+        message.sendMessage("Input user name:");
+        String userName = readData.readConsole();
+        User entity = userService.delete(userName);
         message.operationEntityMgs("deleted", Order.class, entity);
     }
 

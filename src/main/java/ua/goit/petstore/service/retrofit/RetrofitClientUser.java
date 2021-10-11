@@ -36,7 +36,7 @@ public interface RetrofitClientUser {
     @PUT("user/{userName}")
     Call<User> updateEntity(@Path("userName") String userName,@Body User body);
 
-    @DELETE("user/{entityId}")
-    Call<ApiResponse> deleteById(@Path("entityId") Long id);
+    @DELETE("user/{userName}")
+    Call<ApiResponse> deleteByName(@Path("userName") String userName);
 
 }
